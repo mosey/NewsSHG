@@ -1,0 +1,48 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Base.AppTheme">
+        <!-- Customize your theme here. -->
+    </style>
+    <!-- Base application theme. -->
+    <style name="Base.AppTheme" parent="Theme.AppCompat.Light.DarkActionBar" type="text/css">
+
+    </style>
+
+    <style name="WelcomeBase">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="WelcomeBase.Rel">
+        <item name="android:layout_marginBottom">50dp</item>
+    </style>
+
+    <style name="WelcomeButton" parent="WelcomeBase">
+        <item name="android:background">@drawable/welcome_btn_selector</item>
+        <item name="android:layout_marginBottom">80dp</item>
+    </style>
+
+    <!--
+        android:gravity="center_horizontal"
+            android:button="@null"
+            android:drawablePadding="10dp"
+
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+
+    -->
+
+    <style name="MainButton">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+</resources>

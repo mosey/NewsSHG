@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.news.MainActivity">
+
+    <com.example.administrator.view.NoScrollViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+        <!-- 动态加载布局文件 -->
+    </com.example.administrator.view.NoScrollViewPager>
+    
+    <RadioGroup
+        android:id="@+id/rgGroug"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <RadioButton
+            style="@style/MainButton"
+            android:id="@+id/rbHome"
+            android:text="首页"
+            android:textColor="@drawable/main_btn_home_text_selector"
+            android:drawableTop="@drawable/main_btn_home_selector" />
+        <RadioButton
+            android:id="@+id/rbTime"
+            style="@style/MainButton"
+            android:text="时间链"
+            android:textColor="@drawable/main_btn_home_text_selector"
+            android:drawableTop="@drawable/main_btn_time_selector" />
+        <RadioButton
+            style="@style/MainButton"
+            android:text="电视"
+            android:drawableTop="@drawable/menu_tv_gray" />
+        <RadioButton
+            style="@style/MainButton"
+            android:text="我的"
+            android:drawableTop="@drawable/menu_about_gray" />
+
+    </RadioGroup>
+
+</LinearLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">        <!-- 连框颜色值 -->
+    <item>
+        <shape>
+            <!-- 边框 -->
+            <solid android:color="#ccc" />
+        </shape>
+    </item>    <!-- 主体背景颜色值 -->
+    <!-- 设置画几个边 -->
+    <item
+        android:bottom="1px"
+        android:left="1px"
+        android:right="1px"
+        android:top="1px">
+        <!-- 主体 green -->
+        <shape>
+            <solid android:color="#fff" />
+        </shape>
+    </item>
+</layer-list>
