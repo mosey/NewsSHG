@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link href="css/mui.css" rel="stylesheet"/>
+    <script src="js/mui.js"></script>
+    <script type="text/javascript">
+			mui.init({
+				pullRefresh: {
+					container: "#refreshContainer", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+					down: {
+						height: 50, //可选,默认50.触发下拉刷新拖动距离,
+						auto: true, //可选,默认false.自动下拉刷新一次
+						contentdown: "下拉可以刷新", //可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+						contentover: "释放立即刷新", //可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+						contentrefresh: "正在刷新...", //可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+						callback: pullfresh //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					}
+				}
+			});
+
+			mui.ready(function() {
+				var search = document.querySelector('#search');
+				// 当激活搜索按钮,而非单击此事件会触发
+				search.addEventListener('search', function() {
+					// 按搜索时候也需要调用下拉刷新
+					pullfresh();
+				}, false);
+			});
+
+			function pullfresh() {
+				var search = document.querySelector('#search');
+				console.info("keyword:" + search.value);
+
+				if(window.WebViewJavascriptBridge) {
+					initDevice();
+				} else {
+					document.addEventListener(
+						'WebViewJavascriptBridgeReady',
+						function() {
+							//do your work here
+							initDevice();
+						},
+						false
+					);
+				}
+			}
+
+			function initDevice(){
+				// 调用Android提供的底层方法
+				// window是js顶级对象, 通过callHandler调用android的方法,参数3就是回调函数
+				window.WebViewJavascriptBridge.callHandler(
+					'getServerData', search.value,
+					function(data) {
+                            // 默认返回的是字符串,因此先转化为JSON
+						console.info(data.length);
+						var result = JSON.parse(data);
+						var newsList = result.data;
+
+						// 只要数据返回,则结束下拉刷新
+						mui('#refreshContainer').pullRefresh().endPulldownToRefresh();
+						var ul = document.querySelector('.mui-table-view');
+						// 清除之前的数据
+						ul.innerHTML = '';
+						// 循环获取json数组里面的每一个对象
+						mui.each(newsList, function(index, item) {
+							var li = document.createElement('li');
+							// li添加样式
+							li.className = 'mui-table-view-cell mui-media';
+							li.innerHTML = '<a href="javascript:;"> \
+								<img class="mui-media-object mui-pull-right" src="' + item.top_image + '"> \
+								<div class="mui-media-body"> \
+									' + item.title + ' \
+									<p class="mui-ellipsis">' + item.digest + '</p> \
+								</div> \
+							</a>';
+							// 把当前li添加到ul中
+							ul.insertBefore(li, ul.firstChild);
+						})
+					}
+				);
+
+			}
+
+    </script>
+
+</head>
+
+<body>
+<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+    <div class="mui-input-row mui-search" style="margin-bottom: -10px;margin-top: 5px;">
+        <input type="search" id="search" class="mui-input-clear" placeholder="芙蓉姐姐">
+    </div>
+    <div class="mui-scroll">
+        <ul class="mui-table-view">
+            <!--<li class="mui-table-view-cell mui-media">
+        <a href="javascript:;">
+            <img class="mui-media-object mui-pull-right" src="http://placehold.it/40x30">
+            <div class="mui-media-body">
+                幸福
+                <p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+            </div>
+        </a>
+    </li>-->
+        </ul>
+    </div>
+</div>
+</body>
+
+</html>

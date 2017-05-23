@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.administrator.news">
 
     <!--
@@ -15,9 +16,12 @@
         android:name="com.example.administrator.utils.NewsApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="News"
+        tools:replace="android:label"
+        android:label="NewsSHG"
         android:supportsRtl="true"
-        android:theme="@style/Base.AppTheme">
+        android:theme="@style/Base.AppTheme"
+
+        >
 
         <activity
             android:name=".IndexActivity"

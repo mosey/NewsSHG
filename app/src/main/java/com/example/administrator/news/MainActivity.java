@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 
 import com.example.administrator.fragment.HomePageFragment;
+import com.example.administrator.fragment.ProfileFragment;
 import com.example.administrator.fragment.TabFragment_a;
 import com.example.administrator.fragment.TabFragment_b;
 import com.example.administrator.fragment.TimePageFragment;
@@ -66,6 +67,9 @@ public class MainActivity extends FragmentActivity {
                            case R.id.rbTime:
                                viewpager.setCurrentItem(1,true);
                                break;
+                           case R.id.rbMe:
+                               viewpager.setCurrentItem(3,true);
+                               break;
                    }
             }
         });
@@ -85,6 +89,7 @@ public class MainActivity extends FragmentActivity {
             super(fm);
             iList.add(new HomePageFragment());
             iList.add(new TimePageFragment());
+            iList.add(new ProfileFragment());
         }
 
         @Override
